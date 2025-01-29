@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Correo</title>
+    <script>
+        function enviarCorreo() {
+            // Obtener la matrícula seleccionada
+            var matricula = document.getElementById("matricula").value;
+
+            // Definir destinatario, asunto y cuerpo según la matrícula elegida
+            var destinatario = "";
+            var asunto = "";
+            var cuerpo = "";
+
+            if (matricula === "ECMUS") {
+                destinatario = "correo1@example.com";
+                asunto = "Reporte ECMUS";
+                cuerpo = "Hola,\n\nEste es un reporte para la matrícula ECMUS.\n\nSaludos.";
+            } else if (matricula === "ECMLR") {
+                destinatario = "correo2@example.com";
+                asunto = "Reporte ECMLR";
+                cuerpo = "Hola,\n\nEste es un reporte para la matrícula ECMLR.\n\nSaludos.";
+            } else {
+                alert("Por favor, selecciona una matrícula válida.");
+                return;
+            }
+
+            // Crear el enlace mailto
+            var mailtoLink = `mailto:${destinatario}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+
+            // Abrir la app de correo
+            window.location.href = mailtoLink;
+        }
+    </script>
+</head>
+<body>
+    <h2>Selecciona la matrícula</h2>
+    <label for="matricula">Matrícula:</label>
+    <select id="matricula">
+        <option value="">-- Selecciona --</option>
+        <option value="ECMUS">ECMUS</option>
+        <option value="ECMLR">ECMLR</option>
+    </select>
+    <br><br>
+    <button onclick="enviarCorreo()">Enviar Correo</button>
+</body>
+</html>
